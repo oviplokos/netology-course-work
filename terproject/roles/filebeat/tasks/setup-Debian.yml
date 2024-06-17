@@ -5,7 +5,3 @@
       - apt-transport-https
       - gnupg2
     state: present
-- name: Filebeat setup
-  become: true
-  shell:
-    cmd: filebeat setup 2> /dev/null
