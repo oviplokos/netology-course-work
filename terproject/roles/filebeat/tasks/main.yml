@@ -11,7 +11,7 @@
 - name: Filebeat setup
   become: true
   shell:
-    cmd: filebeat setup 2> /dev/null
+    cmd: filebeat setup &> /dev/null
 
 - name: Ensure Filebeat is started and enabled at boot.
   service:

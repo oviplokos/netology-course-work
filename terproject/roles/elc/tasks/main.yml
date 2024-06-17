@@ -14,7 +14,7 @@
 - name: Copy file with owner and permissions
   become: true
   ansible.builtin.copy:
-    src: /home/netology/vagrantproject/terproject/roles/elc/templates/elasticsearch.yml
+    src: ./roles/elc/templates/elasticsearch.yml
     dest: /etc/elasticsearch/elasticsearch.yml
 
 # - name: Restart service cron in all cases, also issue daemon-reload to pick up config changes

@@ -1,29 +1,4 @@
 ---
-- hosts: nginx
-  become: true
-  roles:
-    - nginx
-  tags:
-    - nginx
-
-- hosts: nginx
-  become: true
-  tasks:
-    - name: Install a .deb package
-      apt:
-        deb: https://mirror.yandex.ru/mirrors/elastic/8/pool/main/f/filebeat/filebeat-8.10.3-amd64.deb
-  tags:
-    - nginx
-
-- hosts: nginx
-  become: true
-  roles:
-    - filebeat
-    - node_exporter
-    - prometheus-nginxlog-exporter
-  tags:
-    - nginx
-
 - hosts: prometheus
   become: true
   roles:
@@ -92,3 +67,28 @@
     - kibana
   tags:
     - kibana
+
+- hosts: nginx
+  become: true
+  roles:
+    - nginx
+  tags:
+    - nginx
+
+- hosts: nginx
+  become: true
+  tasks:
+    - name: Install a .deb package
+      apt:
+        deb: https://mirror.yandex.ru/mirrors/elastic/8/pool/main/f/filebeat/filebeat-8.10.3-amd64.deb
+  tags:
+    - nginx
+
+- hosts: nginx
+  become: true
+  roles:
+    - filebeat
+    - node_exporter
+    - prometheus-nginxlog-exporter
+  tags:
+    - nginx

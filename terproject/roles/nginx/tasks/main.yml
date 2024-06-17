@@ -16,7 +16,7 @@
 - name: Copy config file with owner and permissions
   become: true
   template:
-    src: /home/netology/vagrantproject/terproject/roles/nginx/templates/index.j2
+    src: ./roles/nginx/templates/index.j2
     dest: /var/www/html/index.html
     mode: "0555"
   notify: Restart nginx
