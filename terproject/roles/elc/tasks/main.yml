@@ -1,0 +1,39 @@
+---
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    update_cache: yes
+#    cache_valid_time: 86400 #One day
+- name: Add required dependencies.
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg2
+    state: present
+
+- name: Copy file with owner and permissions
+  become: true
+  ansible.builtin.copy:
+    src: /home/netology/vagrantproject/terproject/roles/elc/templates/elasticsearch.yml
+    dest: /etc/elasticsearch/elasticsearch.yml
+
+# - name: Restart service cron in all cases, also issue daemon-reload to pick up config changes
+#   ansible.builtin.systemd_service:
+#     state: restarted
+#     daemon_reload: true
+#     name: elasticsearch.service
+- name: Just force systemd to reread configs (2.4 and above)
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Enable service elc
+  become: true
+  ansible.builtin.service:
+    name: elasticsearch.service
+    enabled: yes
+
+- name: Start service elc, if not started
+  become: true
+  ansible.builtin.service:
+    name: elasticsearch.service
+    state: started
