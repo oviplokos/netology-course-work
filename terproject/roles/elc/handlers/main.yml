@@ -1,8 +1,0 @@
----
-- name: "Restart elc"
-  ansible.builtin.service:
-    name: elasticsearch.service
-    state: restarted
-  become: true
-  tags:
-    - elc_run

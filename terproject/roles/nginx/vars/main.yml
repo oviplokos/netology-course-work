@@ -1,4 +1,0 @@
----
-# vars file for apach_web
-source_file: ./index.j2
-destin_file: /var/www/html
