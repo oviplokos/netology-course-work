@@ -92,3 +92,11 @@
     - prometheus-nginxlog-exporter
   tags:
     - nginx
+
+- hosts: nginx
+  become: true
+  tasks:
+    - name: Filebeat setup
+      shell: filebeat setup &> /dev/null
+  tags:
+    - nginx2

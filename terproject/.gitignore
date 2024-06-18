@@ -1,4 +1,5 @@
 terraform.tfvars
 terraform.tfstate*
 bastion
-.terraform
+.terraform*
+inventory.ini
