@@ -97,6 +97,6 @@
   become: true
   tasks:
     - name: Filebeat setup
-      shell: filebeat setup &> /dev/null
+      script: ./shell.sh
   tags:
     - nginx2

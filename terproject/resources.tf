@@ -218,7 +218,7 @@ resource "yandex_compute_instance" "elc" {
   resources {
     core_fraction = 20
     cores         = 4
-    memory        = 8
+    memory        = 4
   }
 
   boot_disk {
@@ -326,9 +326,9 @@ resource "yandex_vpc_gateway" "nat_gateway" {
   name      = "gateway"
   shared_egress_gateway {}
 }
-resource "yandex_vpc_route_table" "outdoor" {
+resource "yandex_vpc_route_table" "outdoor-a" {
   folder_id  = var.yandex_folder_id
-  name       = "outdoor table"
+  name       = "outdoor table segment a"
   network_id = yandex_vpc_network.internal-bastion-network.id
 
   static_route {
@@ -337,6 +337,17 @@ resource "yandex_vpc_route_table" "outdoor" {
   }
 
 }
+resource "yandex_vpc_route_table" "outdoor-b" {
+  folder_id  = var.yandex_folder_id
+  name       = "outdoor table segment b"
+  network_id = yandex_vpc_network.internal-bastion-network.id
+
+  static_route {
+    destination_prefix = "0.0.0.0/0"
+    gateway_id         = yandex_vpc_gateway.nat_gateway.id
+  }
+}
+
 resource "yandex_vpc_network" "external-bastion-network" {
   name = "external-bastion-network"
 
@@ -357,7 +368,7 @@ resource "yandex_vpc_subnet" "internal-bastion-segment-a" {
   v4_cidr_blocks = ["172.16.16.0/24"]
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.internal-bastion-network.id
-  route_table_id = yandex_vpc_route_table.outdoor.id
+  route_table_id = yandex_vpc_route_table.outdoor-a.id
 
 }
 resource "yandex_vpc_subnet" "internal-bastion-segment-b" {
@@ -365,7 +376,8 @@ resource "yandex_vpc_subnet" "internal-bastion-segment-b" {
   v4_cidr_blocks = ["172.16.15.0/24"]
   zone           = "ru-central1-b"
   network_id     = yandex_vpc_network.internal-bastion-network.id
-  route_table_id = yandex_vpc_route_table.outdoor.id
+  route_table_id = yandex_vpc_route_table.outdoor-b.id
+
 }
 #---------------GROUPS-------------------
 
@@ -520,17 +532,17 @@ resource "yandex_vpc_security_group" "load-balansing-sg" {
 
 }
 resource "yandex_vpc_security_group" "subnet-sg" {
-  name        = "backend sg"
+  name        = "subnet sg"
   description = "Description for security group"
   network_id  = yandex_vpc_network.internal-bastion-network.id
   ingress {
-    protocol          = "TCP"
-    description       = "ingress check balansing hosts"
+    protocol          = "ANY"
+    description       = "ingress private network to  hosts"
     predefined_target = "self_security_group"
   }
   egress {
     protocol          = "ANY"
-    description       = "egress ssh to private hosts"
+    description       = "egress private network to hosts"
     predefined_target = "self_security_group"
 
   }

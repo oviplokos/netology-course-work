@@ -10,3 +10,6 @@ users:
   shell: /bin/bash
   ssh_authorized_keys:
   - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcg3/z8meFK2AboLbtx4HNRh2euj/mx01qMY6EziHlM netology@netology-VirtualBox
+runcmd:
+  - ip route add 172.16.16.0/24 via 172.16.15.1 dev eth1
+  
