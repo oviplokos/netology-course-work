@@ -1,4 +1,4 @@
-<img width="454" alt="prometeus_curl" src="https://github.com/oviplokos/netology-course-work/assets/81755488/474ef702-d5c4-43b1-a035-ceda0fb8ce74">
+
 #  Курсовая работа на профессии "DevOps-инженер с нуля"
 
 ---------
