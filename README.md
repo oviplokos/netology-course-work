@@ -1,4 +1,4 @@
-
+<img width="454" alt="prometeus_curl" src="https://github.com/oviplokos/netology-course-work/assets/81755488/474ef702-d5c4-43b1-a035-ceda0fb8ce74">
 #  Курсовая работа на профессии "DevOps-инженер с нуля"
 
 ---------
@@ -48,6 +48,37 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 ### Резервное копирование
 Создайте snapshot дисков всех ВМ. Ограничьте время жизни snaphot в неделю. Сами snaphot настройте на ежедневное копирование.
+
+
+## Решение
+С помощью терраформ и ансибл были созданы необходимые виртуальные машины,а так же настроено все необходимое ПО
+Так же были созданы группы безопасности, балансировщик, две ДНС зоны с доменными именнами для внешних и внутренних сервисов.
+Созданы снапшоты дисков и расписание копирования.
+Скриншоты работы
+![VM](https://github.com/oviplokos/netology-course-work/blob/main/images/1-1.png)
+![bg](https://github.com/oviplokos/netology-course-work/blob/main/images/bg.png)
+![instance_group](https://github.com/oviplokos/netology-course-work/blob/main/images/instance_group.png)
+![lb](https://github.com/oviplokos/netology-course-work/blob/main/images/lb.png)
+![lb_web](https://github.com/oviplokos/netology-course-work/blob/main/images/lb_web.png)
+![nginx1](https://github.com/oviplokos/netology-course-work/blob/main/images/nginx1.png)
+![nginx2](https://github.com/oviplokos/netology-course-work/blob/main/images/nginx2.png)
+![prometeus](https://github.com/oviplokos/netology-course-work/blob/main/images/prometeus.png)
+![prometeus_curl](https://github.com/oviplokos/netology-course-work/blob/main/images/prometeus_curl.png)
+![pub_ip](https://github.com/oviplokos/netology-course-work/blob/main/images/pub_ip.png)
+![public_dns_zone](https://github.com/oviplokos/netology-course-work/blob/main/images/public_dns_zone.png)
+![sg](https://github.com/oviplokos/netology-course-work/blob/main/images/sg.png)
+![snapshedule](https://github.com/oviplokos/netology-course-work/blob/main/images/snapshedule.png)
+![snapshots](https://github.com/oviplokos/netology-course-work/blob/main/images/snapshots.png)
+![tg](https://github.com/oviplokos/netology-course-work/blob/main/images/tg.png)
+![dns_zones](https://github.com/oviplokos/netology-course-work/blob/main/images/dns_zones.png)
+![elc](https://github.com/oviplokos/netology-course-work/blob/main/images/elc.png)
+![grafana](https://github.com/oviplokos/netology-course-work/blob/main/images/grafana.png)
+![http-router](https://github.com/oviplokos/netology-course-work/blob/main/images/http-router.png)
+![kibana_index](https://github.com/oviplokos/netology-course-work/blob/main/images/kibana_index.png)
+![kibana_logs](https://github.com/oviplokos/netology-course-work/blob/main/images/kibana_logs.png)
+
+
+
 
 
 ## Критерии сдачи
