@@ -17,8 +17,3 @@ provider "yandex" {
   alias     = "web"
 }
 
-provider "yandex" {
-  token     = var.yandex_cloud_token #секретные данные должны быть в сохранности!! Никогда не выкладывайте токен в публичный доступ.
-  folder_id = "b1gngfs82v779s82s5lh"
-  zone      = "ru-central1-b"
-}
